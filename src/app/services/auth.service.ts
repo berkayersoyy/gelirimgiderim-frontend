@@ -16,11 +16,11 @@ export class AuthService {
 
   register(registerModel:RegisterModel){
     let newPath = this.apiUrl+"register";
-    this.httpClient.post<SingleResponseModel<TokenModel>>(newPath,registerModel);
+    return this.httpClient.post<SingleResponseModel<TokenModel>>(newPath,registerModel);
   }
   login(loginModel:LoginModel){
     let newPath = this.apiUrl+"login";
-    this.httpClient.post<SingleResponseModel<TokenModel>>(newPath,loginModel);
+    return this.httpClient.post<SingleResponseModel<TokenModel>>(newPath,loginModel);
   }
   isAuthenticated(){
     if(localStorage.getItem("token")){
