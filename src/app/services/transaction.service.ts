@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ListResponseModel } from '../models/listResponseModel';
 import { ResponseModel } from '../models/responseModel';
+import { Room } from '../models/room';
 import { SingleResponseModel } from '../models/singleResponseModel';
 import { Transaction } from '../models/transaction';
 
@@ -11,12 +12,16 @@ import { Transaction } from '../models/transaction';
 })
 export class TransactionService {
 
-  apiUrl="https://localhost:44381/api/transactions/";
+  apiUrl="https://gelirimgiderim.azurewebsites.net/api/transactions/";
 
   constructor(private httpClient:HttpClient) { }
 
-  getTransactions():Observable<ListResponseModel<Transaction>>{
+  getTransactionTest():Observable<ListResponseModel<Transaction>>{
     let newPath = this.apiUrl + "getall";
+    return this.httpClient.get<ListResponseModel<Transaction>>(newPath);
+  }
+  getTransactions():Observable<ListResponseModel<Transaction>>{
+    let newPath = this.apiUrl + "getallforroom";
     return this.httpClient.get<ListResponseModel<Transaction>>(newPath);
   }
   getTransactionById(id:string):Observable<SingleResponseModel<Transaction>>{

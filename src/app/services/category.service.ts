@@ -11,7 +11,7 @@ import { SingleResponseModel } from '../models/singleResponseModel';
 })
 export class CategoryService {
 
-  apiUrl="https://localhost:44381/api/categories/";
+  apiUrl="https://gelirimgiderim.azurewebsites.net/api/categories/";
 
   constructor(private httpClient:HttpClient) { }
 
