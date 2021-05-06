@@ -3,6 +3,7 @@
     class="page-header-image"
     style="background-image: url(assets/img/login.jpg)"
   ></div>
+
   <div class="container">
     <div class="col-md-4 content-center">
       <div class="card card-login card-plain">
@@ -21,7 +22,6 @@
                 formControlName="email"
                 type="email"
                 name="email"
-                ngModel email="true"
                 class="form-control"
                 placeholder="Email"
                 (focus)="focus = true"
@@ -48,11 +48,20 @@
             </div>
           </div>
           <div class="footer text-center">
-            <a class="btn btn-primary btn-round btn-lg btn-block" (click)="login()">Giriş Yap</a>
+            <a
+              class="btn btn-primary btn-round btn-lg btn-block"
+              (click)="login()"
+              >Giriş Yap</a
+            >
           </div>
           <div class="pull-left">
             <h6>
-              <a class="link">Kayıt Ol</a>
+              <a
+                (click)="goToRegisterPage()"
+                class="link"
+                style="cursor: pointer"
+                >Kayıt Ol</a
+              >
             </h6>
           </div>
         </form>

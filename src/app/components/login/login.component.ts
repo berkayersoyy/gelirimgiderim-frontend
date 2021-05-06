@@ -24,21 +24,30 @@ export class LoginComponent implements OnInit {
           let loginModel = Object.assign({},this.loginForm.value);
 
           this.authService.login(loginModel).subscribe(response=>{
-              this.toastrService.info(response.message);
+              this.toastrService.success(response.message);
               localStorage.setItem("token",response.data.token);
+              this.goToPanelPage();
           },
           responseError=>{
-              console.log(responseError);
-              this.toastrService.error(responseError.message);
+              this.toastrService.error(responseError.error.message);
           });
       }
   }
 
   createLoginForm(){
       this.loginForm = this.formBuilder.group({
-          email:["",Validators.required],
+          email:["",[Validators.required,Validators.email]],
+          //TODO password minlength need to be arranged
           password:["",Validators.required]
       });
+  }
+
+  goToPanelPage(){
+    window.location.href = 'panel';
+  }
+
+  goToRegisterPage(){
+    window.location.href = 'register';
   }
 
   ngOnInit() :void{

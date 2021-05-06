@@ -13,6 +13,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HeaderImageComponent } from './components/header-image/header-image.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { RegisterComponent } from './components/register/register.component';
+import { PanelComponent } from './components/panel/panel.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     NavbarComponent,
     HeaderImageComponent,
     LoginComponent,
+    RegisterComponent,
+    PanelComponent,
   ],
   imports: [
     BrowserModule,
