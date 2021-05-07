@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private router:Router
   ) {}
 
   login(){
@@ -26,7 +28,7 @@ export class LoginComponent implements OnInit {
           this.authService.login(loginModel).subscribe(response=>{
               this.toastrService.success(response.message);
               localStorage.setItem("token",response.data.token);
-              this.goToPanelPage();
+              this.router.navigate(['/panel']);
           },
           responseError=>{
               this.toastrService.error(responseError.error.message);
@@ -42,28 +44,18 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  goToPanelPage(){
-    window.location.href = 'panel';
-  }
-
-  goToRegisterPage(){
-    window.location.href = 'register';
-  }
-
   ngOnInit() :void{
     this.createLoginForm();
     var body = document.getElementsByTagName('body')[0];
     body.classList.add('login-page');
 
-    var navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.add('navbar-transparent');
+
   }
   ngOnDestroy() {
     var body = document.getElementsByTagName('body')[0];
     body.classList.remove('login-page');
 
-    var navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.remove('navbar-transparent');
+ 
   }
 
 }

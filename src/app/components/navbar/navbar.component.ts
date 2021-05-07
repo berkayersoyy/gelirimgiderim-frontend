@@ -7,6 +7,8 @@ import {
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-navbar',
@@ -22,10 +24,13 @@ export class NavbarComponent implements OnInit {
     public location: Location,
     private element: ElementRef,
     private userService: UserService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router:Router,
+    private toastrService:ToastrService
   ) {
     this.sidebarVisible = false;
   }
+  //TODO dropdown menu for user button
   getCurrentUser() {
     if (this.isAuthenticated()) {
       this.userService.getCurrentUser().subscribe(
@@ -33,6 +38,7 @@ export class NavbarComponent implements OnInit {
           this.user = response.data;
         },
         (responseError) => {
+          //TODO toastr error will be added.
           console.log(responseError.error.message);
         }
       );
@@ -41,8 +47,10 @@ export class NavbarComponent implements OnInit {
   isAuthenticated() {
     return this.authService.isAuthenticated();
   }
-  goToHomePage(){
-    window.location.href="home";
+  logout(){
+    this.authService.logout();
+    this.router.navigate(['/home']);
+    this.toastrService.info("Çıkış yaptınız.");
   }
 
   ngOnInit() {

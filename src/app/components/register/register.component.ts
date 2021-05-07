@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -18,7 +19,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private router:Router
   ) {}
 
   ngOnInit() :void{
@@ -41,6 +43,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       email:["",[Validators.required,Validators.email]],
       password:["",Validators.required],
+      //TODO password minlength need to be arranged
       firstName:["",[Validators.required,Validators.minLength(2)]],
       lastName:["",[Validators.required,Validators.minLength(2)]]
 
@@ -52,18 +55,12 @@ export class RegisterComponent implements OnInit {
       this.authService.register(registerModel).subscribe(response=>{
         this.toastrService.success(response.message);
         localStorage.setItem("token",response.data.token);
-        this.goToPanelPage();
+        this.router.navigate(['/panel']);
       },responseError=>{
-        //TODO remove console log
-        this.toastrService.error(responseError.error.message);
+        console.log(responseError);
+        this.toastrService.error(responseError.error);
       });
     }
   }
 
-  goToPanelPage(){
-    window.location.href= 'panel';
-  }
-  goToLoginPage(){
-    window.location.href = 'login';
-  }
 }

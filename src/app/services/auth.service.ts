@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginModel } from '../models/loginModel';
 import { RegisterModel } from '../models/registerModel';
 import { SingleResponseModel } from '../models/singleResponseModel';
@@ -21,6 +22,9 @@ export class AuthService {
   login(loginModel:LoginModel){
     let newPath = this.apiUrl+"login";
     return this.httpClient.post<SingleResponseModel<TokenModel>>(newPath,loginModel);
+  }
+  logout(){
+    localStorage.removeItem("token");
   }
   isAuthenticated(){
     if(localStorage.getItem("token")){

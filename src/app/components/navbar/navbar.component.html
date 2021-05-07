@@ -1,63 +1,65 @@
-<nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent" color-on-scroll="500">
-    <div class="container">
-      <div class="dropdown button-dropdown">
-        <div ngbDropdown>
-          <a class="dropdown-toggle" ngbDropdownToggle>
-              <span class="button-bar"></span>
-              <span class="button-bar"></span>
-              <span class="button-bar"></span>
-          </a>
-           <div ngbDropdownMenu>
-             <a class="dropdown-header">MENÜ</a>
-             <a class="dropdown-item" href="#">Action</a>
-             <a class="dropdown-item" href="#">Another action</a>
-             <a class="dropdown-item" href="#">Something else here</a>
-             <div class="dropdown-divider"></div>
-             <a class="dropdown-item" href="#">Separated link</a>
-             <div class="dropdown-divider"></div>
-             <a class="dropdown-item" href="#">One more separated link</a>
-           </div>
-         </div>
-      </div>
-        <div class="navbar-translate">
-            <a class="navbar-brand" (click)="goToHomePage()" style="cursor: pointer;" placement="bottom">
-                Gelirim Giderim
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="sidebarToggle()">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-            </button>
-        </div>
-        <div *ngIf="!isAuthenticated()" class="collapse navbar-collapse" data-nav-image="assets/img/blurred-image-1.jpg" data-color="orange">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                  <a class="nav-link" href="/login">
-                      <i class="now-ui-icons users_single-02"></i>
-                      <p>Giriş Yap</p>
-                  </a>
-              </li>
-            </ul>
-        </div>
-        <div *ngIf="isAuthenticated()" class="collapse navbar-collapse" data-nav-image="assets/img/blurred-image-1.jpg" data-color="orange">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/login">
-                    <i class="now-ui-icons users_single-02"></i>
-                    <p>Panel</p>
-                </a>
-            </li>
-          </ul>
-      </div>
-        <div *ngIf="isAuthenticated()" class="collapse navbar-collapse" data-nav-image="assets/img/blurred-image-1.jpg" data-color="orange">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/panel">
-                    <i class="now-ui-icons users_single-02"></i>
-                    <p>{{user.firstName + " " + user.lastName}}</p>
-                </a>
-            </li>
-          </ul>
-      </div>
+<nav
+  class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent"
+  color-on-scroll="500"
+>
+  <div class="container">
+    <div class="navbar-translate">
+      <a
+        class="navbar-brand"
+        [routerLink]="['/home']"
+        routerLinkActive="active"
+        style="cursor: pointer"
+        placement="bottom"
+      >
+        Gelirim Giderim
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarToggler"
+        aria-controls="navbarTogglerDemo02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        (click)="sidebarToggle()"
+      >
+        <span class="navbar-toggler-bar bar1"></span>
+        <span class="navbar-toggler-bar bar2"></span>
+        <span class="navbar-toggler-bar bar3"></span>
+      </button>
     </div>
+    <div
+      class="collapse navbar-collapse"
+      data-nav-image="assets/img/blurred-image-1.jpg"
+      data-color="orange"
+    >
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item" *ngIf="!isAuthenticated()">
+          <a class="nav-link" href="/login">
+            <i class="now-ui-icons users_single-02"></i>
+            <p>Giriş Yap</p>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="isAuthenticated()">
+          <a class="nav-link" href="/panel">
+            <i class="now-ui-icons users_single-02"></i>
+            <p>Panel</p>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="isAuthenticated()">
+          <div class="nav-link dropdown button-dropdown dropdown-toggle" ngbDropdown ngbDropdownToggle>
+            <i class="now-ui-icons users_single-02"></i>
+            <p>{{user.firstName + " " +user.lastName}}</p>
+            <div ngbDropdownMenu>
+              <a class="dropdown-header">Menü</a>
+              <a class="dropdown-item" [routerLink]="['/home']" routerLinkActive="active">Action</a>
+              <a class="dropdown-item">Hesabı Yönet</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" (click)="logout()">Çıkış Yap</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>

@@ -10,20 +10,10 @@ import { TransactionService } from 'src/app/services/transaction.service';
 export class HomeComponent implements OnInit {
 
   transactions:Transaction[]=[];
-  constructor(private transactionService:TransactionService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.getTransactions();
-  }
-
-  getTransactions(){
-    this.transactionService.getTransactionTest().subscribe(response=>{
-      this.transactions=response.data;
-    }
-    );
-  }
-  log(val:any){
-    console.log(val)
+    
   }
 
 }
