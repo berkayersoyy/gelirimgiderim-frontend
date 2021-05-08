@@ -18,8 +18,5 @@ export class PanelComponent implements OnInit {
     var navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.add('navbar-transparent');
   }
-  getHeight(){
-    let height = 62;
-  }
 
 }

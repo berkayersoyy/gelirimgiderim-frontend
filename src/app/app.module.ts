@@ -18,6 +18,8 @@ import { PanelComponent } from './components/panel/panel.component';
 import { RoomComponent } from './components/room/room.component';
 import { RelativeTimePipe } from './pipes/relative-time.pipe';
 import { TransactionComponent } from './components/transaction/transaction.component';
+import { CreateRoomFormModalComponent } from './components/create-room-form-modal/create-room-form-modal.component';
+import { JoinRoomFormModalComponent } from './components/join-room-form-modal/join-room-form-modal.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { TransactionComponent } from './components/transaction/transaction.compo
     RoomComponent,
     RelativeTimePipe,
     TransactionComponent,
+    CreateRoomFormModalComponent,
+    JoinRoomFormModalComponent,
   ],
   imports: [
     BrowserModule,

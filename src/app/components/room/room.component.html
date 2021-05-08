@@ -2,15 +2,25 @@
   <span class="visually-hidden"></span>
 </div>
 
-<button class="btn btn-primary" style="margin-bottom: 10%;">Oda oluştur</button>
-<button class="btn btn-primary" style="margin-bottom: 10%;">Odaya katıl</button>
-<ul
-  class="list-group"
-  *ngFor="let room of rooms"
-  style="overflow-y: scroll; height: 75vh"
+<button
+  *ngIf="dataLoaded"
+  (click)="openCreateRoomFormModal()"
+  class="btn btn-primary"
+  style="margin-bottom: 10%"
 >
-<div class="container">
-  <li class="list-group-item">{{ room.name }}</li>
-</div>
-  
+  Oda oluştur
+</button>
+<button *ngIf="dataLoaded" (click)="openJoinRoomFormModal()" class="btn btn-primary" style="margin-bottom: 10%">
+  Odaya katıl
+</button>
+<ul class="list-group" style="overflow-y: scroll; height: 75vh">
+  <div class="container">
+    <li
+      *ngFor="let room of rooms"
+      class="list-group-item mb-2"
+      style="border-width: 1px"
+    >
+      {{ room.name }}
+    </li>
+  </div>
 </ul>

@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
           });
       }
   }
+  //TODO check login page logos
 
   createLoginForm(){
       this.loginForm = this.formBuilder.group({
@@ -49,7 +50,8 @@ export class LoginComponent implements OnInit {
     var body = document.getElementsByTagName('body')[0];
     body.classList.add('login-page');
 
-
+    var navbar = document.getElementsByTagName('nav')[0];
+    navbar.classList.add('navbar-transparent');
   }
   ngOnDestroy() {
     var body = document.getElementsByTagName('body')[0];
