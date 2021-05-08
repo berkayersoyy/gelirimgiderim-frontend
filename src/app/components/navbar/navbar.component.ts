@@ -55,8 +55,8 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.getCurrentUser();
-    const navbar: HTMLElement = this.element.nativeElement;
-    this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
+    var navbar = document.getElementsByTagName('nav')[0];
+    navbar.classList.add('navbar-transparent');
   }
   sidebarOpen() {
     const toggleButton = this.toggleButton;
