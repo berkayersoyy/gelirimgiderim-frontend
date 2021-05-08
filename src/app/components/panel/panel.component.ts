@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-panel',
@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PanelComponent implements OnInit {
 
+  
   constructor() { }
 
   ngOnInit(): void {
+    var navbar = document.getElementsByTagName('nav')[0];
+    navbar.classList.remove('navbar-transparent');
+  }
+  ngOnDestroy():void{
+    var navbar = document.getElementsByTagName('nav')[0];
+    navbar.classList.add('navbar-transparent');
+  }
+  getHeight(){
+    let height = 62;
   }
 
 }
