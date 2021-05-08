@@ -1,0 +1,16 @@
+<div *ngIf="!dataLoaded" class="spinner-border text-primary" role="status">
+  <span class="visually-hidden"></span>
+</div>
+
+<button class="btn btn-primary" style="margin-bottom: 10%;">Oda oluştur</button>
+<button class="btn btn-primary" style="margin-bottom: 10%;">Odaya katıl</button>
+<ul
+  class="list-group"
+  *ngFor="let room of rooms"
+  style="overflow-y: scroll; height: 75vh"
+>
+<div class="container">
+  <li class="list-group-item">{{ room.name }}</li>
+</div>
+  
+</ul>
