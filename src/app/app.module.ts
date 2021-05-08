@@ -15,6 +15,9 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { RegisterComponent } from './components/register/register.component';
 import { PanelComponent } from './components/panel/panel.component';
+import { RoomComponent } from './components/room/room.component';
+import { RelativeTimePipe } from './pipes/relative-time.pipe';
+import { TransactionComponent } from './components/transaction/transaction.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import { PanelComponent } from './components/panel/panel.component';
     LoginComponent,
     RegisterComponent,
     PanelComponent,
+    RoomComponent,
+    RelativeTimePipe,
+    TransactionComponent,
   ],
   imports: [
     BrowserModule,
