@@ -1,0 +1,58 @@
+<div class="modal-header justify-content-center">
+  <h4 class="title title-up">ODA OLUŞTUR</h4>
+  <button
+    type="button"
+    class="close"
+    (click)="activeModal.dismiss('Close click')"
+  >
+    <i class="now-ui-icons ui-1_simple-remove"></i>
+  </button>
+</div>
+<div class="modal-body">
+  <form
+    [formGroup]="roomForm"
+    style="display: flex; align-items: center; justify-content: center"
+  >
+    <div class="content-center">
+      <div class="input-group form-group-no-border input-lg">
+        <div class="input-group-prepend">
+          <input
+            formControlName="name"
+            type="text"
+            name="name"
+            class="form-control"
+            placeholder="Oda İsmi"
+          />
+        </div>
+      </div>
+      <div class="input-group form-group-no-border input-lg">
+        <div class="input-group-prepend">
+          <input
+            formControlName="description"
+            type="text"
+            name="description"
+            class="form-control"
+            placeholder="Açıklama"
+          />
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-success"
+    (click)="createRoom()"
+    [disabled]="clicked"
+  >
+    OLUŞTUR
+  </button>
+  <button
+    type="button"
+    class="btn btn-danger"
+    (click)="activeModal.dismiss('Close clicked')"
+  >
+    KAPAT
+  </button>
+</div>
