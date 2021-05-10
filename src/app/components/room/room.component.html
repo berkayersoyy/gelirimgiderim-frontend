@@ -1,26 +1,57 @@
-<div *ngIf="!dataLoaded" class="spinner-border text-primary" role="status">
-  <span class="visually-hidden"></span>
-</div>
+<div class="row">
+  <div class="col-sm-3">
+    <div *ngIf="!dataLoaded" class="spinner-border text-primary" role="status">
+      <span class="visually-hidden"></span>
+    </div>
 
-<button
-  *ngIf="dataLoaded"
-  (click)="openCreateRoomFormModal()"
-  class="btn btn-primary"
-  style="margin-bottom: 10%"
->
-  Oda oluştur
-</button>
-<button *ngIf="dataLoaded" (click)="openJoinRoomFormModal()" class="btn btn-primary" style="margin-bottom: 10%">
-  Odaya katıl
-</button>
-<ul class="list-group" style="overflow-y: scroll; height: 75vh">
-  <div class="container">
-    <li
-      *ngFor="let room of rooms"
-      class="list-group-item mb-2"
-      style="border-width: 1px"
+    <button
+      *ngIf="dataLoaded"
+      (click)="openCreateRoomFormModal()"
+      class="btn btn-primary"
+      style="margin-bottom: 10%"
     >
-      {{ room.name }}
-    </li>
+      Oda oluştur
+    </button>
+    <button
+      *ngIf="dataLoaded"
+      (click)="openJoinRoomFormModal()"
+      class="btn btn-primary"
+      style="margin-bottom: 10%"
+    >
+      Odaya katıl
+    </button>
+    <ul class="list-group" style="overflow-y: scroll; height: 75vh">
+      <div class="container">
+        <li
+          *ngFor="let room of rooms"
+          [class]="getCurrentRoomClass(room)"
+          style="border-width: 1px"
+          (click)="setCurrentRoom(room)"
+        >
+          {{ room.name }}
+        </li>
+      </div>
+    </ul>
   </div>
-</ul>
+  <div class="col-sm-9">
+    <div *ngIf="currentRoom" class="container">
+      <div style="height: 50px; background-color: #f96332; text-align: center">
+        <button
+          style="background-color: transparent; border: none; float: right"
+        >
+          <i
+            class="now-ui-icons ui-1_settings-gear-63"
+            style="font-size: 24px; padding: 12px"
+          ></i>
+        </button>
+        <h4 style="color: white; padding-top: 10px">{{ currentRoom.name }}</h4>
+      </div>
+      <div style="height: 75vh">
+        <button class="btn btn-primary btn-round" style="float: right">
+          Davet Oluştur
+        </button>
+      </div>
+    </div>
+    <app-transaction></app-transaction>
+  </div>
+</div>

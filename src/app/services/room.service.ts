@@ -13,7 +13,7 @@ import { User } from '../models/user';
 })
 export class RoomService {
 
-  apiUrl = "https://gelirimgiderim.azurewebsites.net/api/rooms/";
+  apiUrl = "https://localhost:44386/api/rooms/";
 
   constructor(private httpClient:HttpClient) { }
 
@@ -24,6 +24,10 @@ export class RoomService {
   getUsersExistInRoom(room:Room){
     let newPath= this.apiUrl + "getusersexist?room="+room;
     return this.httpClient.get<ListResponseModel<User>>(newPath);
+  }
+  get(room:string){
+    let newPath = this.apiUrl+"get?room="+room;
+    return this.httpClient.get<SingleResponseModel<Room>>(newPath);
   }
   add(room:Room){
     let newPath = this.apiUrl+"add";
@@ -49,9 +53,9 @@ export class RoomService {
     let newPath = this.apiUrl+"getinvitation?room="+room;
     return this.httpClient.get<SingleResponseModel<Invitation>>(newPath);
   }
-  joinRoom(invitationCode:string){
-    let newPath = this.apiUrl+"joinroom";
-    return this.httpClient.post<ResponseModel>(newPath,invitationCode);
+  joinRoom(invitation:Invitation){
+    let newPath = this.apiUrl+ "joinroom";
+    return this.httpClient.post<ResponseModel>(newPath,invitation);
   }
   leaveRoom(room:Room){
     let newPath = this.apiUrl+"leaveroom";

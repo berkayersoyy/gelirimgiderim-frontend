@@ -28,17 +28,21 @@ export class JoinRoomFormModalComponent implements OnInit {
 
   createRoomForm(){
     this.roomForm = this.formBuilder.group({
-      invitation:["",Validators.required]
+      invitationCode:["",Validators.required]
     })
   }
   joinRoom(){
+    this.clicked=true;
     if(this.roomForm.valid){
+      console.log(this.roomForm.value)
       let invitation = Object.assign({},this.roomForm.value);
+      console.log(invitation)
       this.roomService.joinRoom(invitation).subscribe(response=>{
         this.toastrService.success(response.message);
         this.activeModal.dismiss();
         this.routerService.refreshPage();
       },errorResponse=>{
+        this.clicked=false;
         this.toastrService.error(errorResponse.error.message);
       });
     }

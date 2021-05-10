@@ -15,13 +15,15 @@ export class RoomComponent implements OnInit {
 
   dataLoaded=false;
   rooms:Room[];
+  currentRoom:Room;
 
   constructor(private roomService:RoomService,private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.getRooms();
   }
- 
+  //TODO settings need to be dropdown menu and arranged
+  //TODO  davet olustur button need to be used as modal
   getRooms(){
     this.roomService.getRooms().subscribe(response=>{
       this.rooms=response.data;
@@ -30,23 +32,25 @@ export class RoomComponent implements OnInit {
       console.log(responseError.error.message)
     });
   }
+  //TODO room name pipe need to be added 11 word + ... 
+  //TODO room badge for users in room
   openCreateRoomFormModal() {
     const modalRef = this.modalService.open(CreateRoomFormModalComponent);
-    
-    modalRef.result.then((result) => {
-      console.log(result);
-    }).catch((error) => {
-      console.log(error);
-    });
   }
   openJoinRoomFormModal() {
     const modalRef = this.modalService.open(JoinRoomFormModalComponent);
-    
-    modalRef.result.then((result) => {
-      console.log(result);
-    }).catch((error) => {
-      console.log(error);
-    });
+  }
+  getCurrentRoomClass(room:Room){
+    if(room==this.currentRoom){
+      return "list-group-item active";
+    } else{
+      return "list-group-item";
+    }
+  }
+  setCurrentRoom(room:Room){
+    this.currentRoom=room;
+
+    localStorage.setItem("currentRoom",room.id);
   }
 
 }

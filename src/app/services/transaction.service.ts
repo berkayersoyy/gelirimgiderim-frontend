@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Invitation } from '../models/invitation';
 import { ListResponseModel } from '../models/listResponseModel';
 import { ResponseModel } from '../models/responseModel';
 import { Room } from '../models/room';
@@ -13,20 +12,16 @@ import { Transaction } from '../models/transaction';
 })
 export class TransactionService {
 
-  apiUrl="https://gelirimgiderim.azurewebsites.net/api/transactions/";
+  apiUrl="https://localhost:44386/api/transactions/";
 
   constructor(private httpClient:HttpClient) { }
 
-  getTransactionTest():Observable<ListResponseModel<Transaction>>{
-    let newPath = this.apiUrl + "getall";
+  getTransactions(room:Room):Observable<ListResponseModel<Transaction>>{
+    let newPath = this.apiUrl + "getallforroom?room="+room;
     return this.httpClient.get<ListResponseModel<Transaction>>(newPath);
   }
-  getTransactions():Observable<ListResponseModel<Transaction>>{
-    let newPath = this.apiUrl + "getallforroom";
-    return this.httpClient.get<ListResponseModel<Transaction>>(newPath);
-  }
-  getTransactionById(id:string):Observable<SingleResponseModel<Transaction>>{
-    let newPath=this.apiUrl + "getbyid?id="+id;
+  getTransactionById(transaction:Transaction):Observable<SingleResponseModel<Transaction>>{
+    let newPath=this.apiUrl + "getbyid?id="+transaction;
     return this.httpClient.get<SingleResponseModel<Transaction>>(newPath);
   }
   add(transaction:Transaction){

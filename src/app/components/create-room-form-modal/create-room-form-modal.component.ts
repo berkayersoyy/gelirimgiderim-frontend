@@ -49,6 +49,7 @@ export class CreateRoomFormModalComponent implements OnInit {
         }
       );
     } else {
+      this.clicked=false;
       this.toastrService.error('Eksik bilgi girdiniz!');
     }
   }

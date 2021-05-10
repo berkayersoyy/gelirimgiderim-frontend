@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
   private toggleButton: any;
   private sidebarVisible: boolean;
   user: User;
+  dataLoaded=false;
 
   constructor(
     public location: Location,
@@ -30,16 +31,15 @@ export class NavbarComponent implements OnInit {
   ) {
     this.sidebarVisible = false;
   }
-  //TODO dropdown menu for user button
   getCurrentUser() {
     if (this.isAuthenticated()) {
       this.userService.getCurrentUser().subscribe(
         (response) => {
           this.user = response.data;
+          this.dataLoaded=true;
         },
         (responseError) => {
-          //TODO toastr error will be added.
-          console.log(responseError.error.message);
+          this.toastrService.error(responseError.error.message);
         }
       );
     } 

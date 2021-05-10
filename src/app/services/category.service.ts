@@ -11,7 +11,7 @@ import { SingleResponseModel } from '../models/singleResponseModel';
 })
 export class CategoryService {
 
-  apiUrl="https://gelirimgiderim.azurewebsites.net/api/categories/";
+  apiUrl="https://localhost:44386/api/categories/";
 
   constructor(private httpClient:HttpClient) { }
 
@@ -19,21 +19,21 @@ export class CategoryService {
     let newPath = this.apiUrl + "getall";
     return this.httpClient.get<ListResponseModel<Category>>(newPath);
   }
-  getCategoriesById(id:string):Observable<SingleResponseModel<Category>>{
-    let newPath = this.apiUrl + "getbyid?id="+id;
+  getCategoriesById(category:Category):Observable<SingleResponseModel<Category>>{
+    let newPath = this.apiUrl + "getbyid?id="+category;
     return this.httpClient.get<SingleResponseModel<Category>>(newPath);
   }
-  add(transaction:Category){
+  add(category:Category){
     let newPath = this.apiUrl + "add";
-    return this.httpClient.post<ResponseModel>(newPath,transaction);
+    return this.httpClient.post<ResponseModel>(newPath,category);
   }
-  update(transaction:Category){
+  update(category:Category){
     let newPath = this.apiUrl + "update";
-    return this.httpClient.post<ResponseModel>(newPath,transaction);
+    return this.httpClient.post<ResponseModel>(newPath,category);
   }
-  delete(transaction:Category){
+  delete(category:Category){
     let newPath = this.apiUrl + "delete";
-    return this.httpClient.post<ResponseModel>(newPath,transaction);
+    return this.httpClient.post<ResponseModel>(newPath,category);
   }
   
 }

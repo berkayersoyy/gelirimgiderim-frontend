@@ -20,6 +20,7 @@ import { RelativeTimePipe } from './pipes/relative-time.pipe';
 import { TransactionComponent } from './components/transaction/transaction.component';
 import { CreateRoomFormModalComponent } from './components/create-room-form-modal/create-room-form-modal.component';
 import { JoinRoomFormModalComponent } from './components/join-room-form-modal/join-room-form-modal.component';
+import { TransactionChartComponent } from './components/transaction-chart/transaction-chart.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { JoinRoomFormModalComponent } from './components/join-room-form-modal/jo
     TransactionComponent,
     CreateRoomFormModalComponent,
     JoinRoomFormModalComponent,
+    TransactionChartComponent,
   ],
   imports: [
     BrowserModule,
