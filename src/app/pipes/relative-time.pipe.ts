@@ -5,8 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class RelativeTimePipe implements PipeTransform {
 
-  transform(inputDate:Date): string {
-    var current = new Date().valueOf();
+  transform(inputDate:number): string {
+        var current = new Date().valueOf();
         var input = inputDate.valueOf();
         var msPerMinute = 60 * 1000;
         var msPerHour = msPerMinute * 60;
@@ -15,6 +15,7 @@ export class RelativeTimePipe implements PipeTransform {
         var msPerYear = msPerDay * 365;
 
         var elapsed = current - input;
+        elapsed = Math.abs(elapsed)
 
         if (elapsed < msPerMinute) {
             return Math.round(elapsed / 1000) + ' saniye önce';
@@ -29,15 +30,15 @@ export class RelativeTimePipe implements PipeTransform {
         }
 
         else if (elapsed < msPerMonth) {
-            return 'approximately ' + Math.round(elapsed / msPerDay) + ' gün önce';
+            return 'yaklaşık ' + Math.round(elapsed / msPerDay) + ' gün önce';
         }
 
         else if (elapsed < msPerYear) {
-            return 'approximately ' + Math.round(elapsed / msPerMonth) + ' ay önce';
+            return 'yaklaşık ' + Math.round(elapsed / msPerMonth) + ' ay önce';
         }
 
         else {
-            return 'approximately ' + Math.round(elapsed / msPerYear) + ' yıl önce';
+            return 'yaklaşık ' + Math.round(elapsed / msPerYear) + ' yıl önce';
         }
   }
 

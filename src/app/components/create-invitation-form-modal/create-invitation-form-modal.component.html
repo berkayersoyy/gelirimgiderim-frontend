@@ -1,0 +1,47 @@
+<div class="modal-header justify-content-center">
+  <h4 class="title title-up">DAVET KODU OLUŞTUR</h4>
+  <button
+    type="button"
+    class="close"
+    (click)="activeModal.dismiss('Close click')"
+  >
+    <i class="now-ui-icons ui-1_simple-remove"></i>
+  </button>
+</div>
+<div class="modal-body" *ngIf="dataLoaded">
+  <div
+    class="container justify-content-center"
+    style="text-align: center; margin-bottom: 10px; font-size: 40px"
+    *ngIf="dataLoaded"
+  >
+    {{ invitation.invitationCode }}
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-success btn-add"
+    (click)="createInvitation()"
+    [style.visibility]="invitation == null ? 'visible' : 'hidden'"
+  >
+    OLUŞTUR
+  </button>
+  <button
+    type="button"
+    class="btn btn-danger btn-delete"
+    (click)="deleteInvitation()"
+    [style.visibility]="invitation != null ? 'visible' : 'hidden'"
+  >
+    SİL
+  </button>
+  <button
+    type="button"
+    class="btn btn-danger"
+    (click)="activeModal.dismiss('Close clicked')"
+    [style.background-color]="invitation==null ? 'red' : 'gray'"
+    [style.float]="invitation==null ? 'left' : null"
+    [style.color]="invitation==null ? 'white' : 'white'"
+  >
+    KAPAT
+  </button>
+</div>

@@ -3,6 +3,7 @@ export interface Transaction{
     categoryId:string;
     userId:string;
     description:string;
+    title:string;
     amount:number;
-    date:Date;
+    date:number;
 }

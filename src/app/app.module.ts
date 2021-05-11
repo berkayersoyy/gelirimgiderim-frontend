@@ -21,6 +21,10 @@ import { TransactionComponent } from './components/transaction/transaction.compo
 import { CreateRoomFormModalComponent } from './components/create-room-form-modal/create-room-form-modal.component';
 import { JoinRoomFormModalComponent } from './components/join-room-form-modal/join-room-form-modal.component';
 import { TransactionChartComponent } from './components/transaction-chart/transaction-chart.component';
+import { ChartsModule } from 'ng2-charts';
+import { CreateInvitationFormModalComponent } from './components/create-invitation-form-modal/create-invitation-form-modal.component';
+
+
 
 @NgModule({
   declarations: [
@@ -37,6 +41,7 @@ import { TransactionChartComponent } from './components/transaction-chart/transa
     CreateRoomFormModalComponent,
     JoinRoomFormModalComponent,
     TransactionChartComponent,
+    CreateInvitationFormModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +51,7 @@ import { TransactionChartComponent } from './components/transaction-chart/transa
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ChartsModule,
     ToastrModule.forRoot({ positionClass: 'toast-bottom-right'}),
   ],
   providers: [

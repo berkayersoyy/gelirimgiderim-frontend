@@ -1,0 +1,47 @@
+<div
+  class="container justify-content-center"
+  style="width: 70vh; height: 85vh; overflow: scroll"
+>
+  <div class="accordion" id="accordionExample" *ngIf="dataLoaded">
+    <div class="card" *ngFor="let transaction of transactions">
+      <div class="card-header" [id]="'heading'+transaction.id">
+        <h2 class="mb-0" style="font-size: 20px">
+          <button
+            class="btn btn-link text-left"
+            type="button"
+            data-toggle="collapse"
+            [attr.data-target]="'collapse'+transaction.id"
+            aria-expanded="false"
+            [attr.aria-controls]="'collapse'+transaction.id"
+          >
+      
+            {{transaction.title}}
+          </button>
+          <p style="float: right; padding-top: 12px; font-size: 20px">
+            {{transaction.amount}} TL
+          </p>
+          <a
+            style="
+              position: absolute;
+              bottom: 5px;
+              right: 12px;
+              font-size: 12px;
+            "
+            >{{transaction.date | relativeTime}}</a
+          >
+        </h2>
+      </div>
+      <div
+        *ngIf="transaction.description!=null"
+        [id]="'collapse'+transaction.id"
+        class="collapse"
+        [attr.aria-labelledby]="'heading'+transaction.id"
+        data-parent="#accordionExample"
+      >
+        <div class="card-body">
+          {{transaction.description}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

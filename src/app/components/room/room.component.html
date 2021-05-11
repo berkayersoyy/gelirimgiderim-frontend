@@ -46,12 +46,17 @@
         </button>
         <h4 style="color: white; padding-top: 10px">{{ currentRoom.name }}</h4>
       </div>
-      <div style="height: 75vh">
-        <button class="btn btn-primary btn-round" style="float: right">
+      <div class="container" style="height: 65vh">
+        <button
+          class="btn btn-primary btn-round"
+          style="float: right"
+          (click)="openCreateInvitationFormModal()"
+        >
           Davet Oluştur
         </button>
+        <app-transaction-chart></app-transaction-chart>
       </div>
+      <app-transaction [currentRoom]="currentRoom"></app-transaction>
     </div>
-    <app-transaction></app-transaction>
   </div>
 </div>

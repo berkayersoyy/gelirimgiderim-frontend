@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Room } from 'src/app/models/room';
 import { RoomService } from 'src/app/services/room.service';
+import { CreateInvitationFormModalComponent } from '../create-invitation-form-modal/create-invitation-form-modal.component';
 import { CreateRoomFormModalComponent } from '../create-room-form-modal/create-room-form-modal.component';
 import { JoinRoomFormModalComponent } from '../join-room-form-modal/join-room-form-modal.component';
 
@@ -15,7 +16,7 @@ export class RoomComponent implements OnInit {
 
   dataLoaded=false;
   rooms:Room[];
-  currentRoom:Room;
+  @Input() currentRoom:Room;
 
   constructor(private roomService:RoomService,private modalService: NgbModal) { }
 
@@ -40,6 +41,11 @@ export class RoomComponent implements OnInit {
   openJoinRoomFormModal() {
     const modalRef = this.modalService.open(JoinRoomFormModalComponent);
   }
+  openCreateInvitationFormModal(){
+    const modalRef = this.modalService.open(CreateInvitationFormModalComponent)
+    modalRef.componentInstance.room = this.currentRoom;
+  
+  }
   getCurrentRoomClass(room:Room){
     if(room==this.currentRoom){
       return "list-group-item active";
@@ -49,8 +55,6 @@ export class RoomComponent implements OnInit {
   }
   setCurrentRoom(room:Room){
     this.currentRoom=room;
-
-    localStorage.setItem("currentRoom",room.id);
   }
 
 }
