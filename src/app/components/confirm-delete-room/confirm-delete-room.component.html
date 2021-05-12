@@ -1,0 +1,44 @@
+<div class="modal-header justify-content-center">
+  <h4 class="title title-up">ODAYI DÜZENLE</h4>
+  <button
+    type="button"
+    class="close"
+    (click)="activeModal.dismiss('Close click')"
+  >
+    <i class="now-ui-icons ui-1_simple-remove"></i>
+  </button>
+</div>
+<div class="modal-body">
+  <form
+    [formGroup]="roomForm"
+    style="display: flex; align-items: center; justify-content: center"
+  >
+    <div class="content-center">
+      Odayı silerseniz içindeki her şeyle birlikte kadar silincektir, bu geri
+        alınamaz bir işlemdir. Devam etmek istiyorsanız odanın adını girin --> <a style="font-weight: bold;">{{room.name}}</a>
+      <div class="input-group form-group-no-border input-lg">
+        <div class="input-group-prepend">
+          <input
+          style="margin:40px;margin-left:130px;"
+            formControlName="roomName"
+            type="text"
+            name="name"
+            class="form-control"
+            placeholder="{{ room.name }}"
+          />
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+    style="left:45%; bottom:10px;position: absolute;"
+    type="button"
+    class="btn btn-danger"
+    (click)="deleteRoom()"
+    [disabled]="clicked"
+  >
+    SİL
+  </button>
+</div>
