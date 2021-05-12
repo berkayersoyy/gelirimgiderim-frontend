@@ -25,7 +25,6 @@
         <li
           *ngFor="let room of rooms"
           [class]="getCurrentRoomClass(room)"
-          style="border-width: 1px"
           (click)="setCurrentRoom(room)"
         >
           {{ room.name }}
@@ -38,13 +37,14 @@
       <div style="height: 50px; background-color: #f96332; text-align: center">
         <button
           style="background-color: transparent; border: none; float: right"
+          (click)="routeToRoomSettings()"
         >
           <i
             class="now-ui-icons ui-1_settings-gear-63"
             style="font-size: 24px; padding: 12px"
           ></i>
         </button>
-        <h4 style="color: white; padding-top: 10px">{{ currentRoom.name }}</h4>
+        <p style="color: white; padding-top: 4px; font-size: 25px;">{{ currentRoom.name }}</p>
       </div>
       <div class="container" style="height: 65vh">
         <button

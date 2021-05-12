@@ -23,6 +23,11 @@ import { JoinRoomFormModalComponent } from './components/join-room-form-modal/jo
 import { TransactionChartComponent } from './components/transaction-chart/transaction-chart.component';
 import { ChartsModule } from 'ng2-charts';
 import { CreateInvitationFormModalComponent } from './components/create-invitation-form-modal/create-invitation-form-modal.component';
+import { RoomSettingsComponent } from './components/room-settings/room-settings.component';
+import { AmountPipe } from './pipes/amount.pipe';
+import { OverflowStringPipe } from './pipes/overflow-string.pipe';
+import { ConfirmDeleteRoomComponent } from './components/confirm-delete-room/confirm-delete-room.component';
+import { ChangeRoomForModalComponent } from './components/change-room-for-modal/change-room-for-modal.component';
 
 
 
@@ -42,6 +47,11 @@ import { CreateInvitationFormModalComponent } from './components/create-invitati
     JoinRoomFormModalComponent,
     TransactionChartComponent,
     CreateInvitationFormModalComponent,
+    RoomSettingsComponent,
+    AmountPipe,
+    OverflowStringPipe,
+    ConfirmDeleteRoomComponent,
+    ChangeRoomForModalComponent,
   ],
   imports: [
     BrowserModule,

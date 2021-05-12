@@ -21,13 +21,15 @@ export class RoomService {
     let newPath = this.apiUrl + 'getuserrooms';
     return this.httpClient.get<ListResponseModel<Room>>(newPath);
   }
-  getUsersExistInRoom(room: Room) {
-    let newPath = this.apiUrl + 'getusersexist?room=' + room;
-    return this.httpClient.get<ListResponseModel<User>>(newPath);
+  getUsersExistInRoom(room: string) {
+    let newPath = this.apiUrl + 'getusersexist';
+    const params = new HttpParams().set('room',room);
+    return this.httpClient.get<ListResponseModel<User>>(newPath,{params:params});
   }
-  get(room: Room) {
-    let newPath = this.apiUrl + 'get?room=' + room;
-    return this.httpClient.get<SingleResponseModel<Room>>(newPath);
+  get(room: string) {
+    let newPath = this.apiUrl + 'get';
+    const params = new HttpParams().set('room',room);
+    return this.httpClient.get<SingleResponseModel<Room>>(newPath,{params:params});
   }
   add(room: Room) {
     let newPath = this.apiUrl + 'add';
