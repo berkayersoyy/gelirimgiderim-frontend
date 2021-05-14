@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms"
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
@@ -28,8 +29,6 @@ import { AmountPipe } from './pipes/amount.pipe';
 import { OverflowStringPipe } from './pipes/overflow-string.pipe';
 import { ConfirmDeleteRoomComponent } from './components/confirm-delete-room/confirm-delete-room.component';
 import { ChangeRoomForModalComponent } from './components/change-room-for-modal/change-room-for-modal.component';
-
-
 
 @NgModule({
   declarations: [
@@ -62,10 +61,11 @@ import { ChangeRoomForModalComponent } from './components/change-room-for-modal/
     ReactiveFormsModule,
     HttpClientModule,
     ChartsModule,
-    ToastrModule.forRoot({ positionClass: 'toast-bottom-right'}),
+    ToastrModule.forRoot({ positionClass: 'toast-bottom-right' }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent],
 })
