@@ -25,7 +25,7 @@ export class CreateInvitationFormModalComponent implements OnInit {
   ngOnInit(): void {
     this.getInvitation();
   }
-
+  //TODO subscribe invitation expire date for check everytime.
   createInvitation() {
     this.roomService.createInvitation(this.room).subscribe(response=>{
         this.invitation = response.data;
