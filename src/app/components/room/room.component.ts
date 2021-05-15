@@ -28,7 +28,6 @@ export class RoomComponent implements OnInit {
     this.getRooms();
   }
   //TODO settings need to be dropdown menu and arranged
-  //TODO  davet olustur button need to be used as modal
   getRooms() {
     this.roomService.getRooms().subscribe(
       (response) => {

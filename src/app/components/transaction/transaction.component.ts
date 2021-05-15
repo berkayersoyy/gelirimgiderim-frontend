@@ -43,6 +43,7 @@ export class TransactionComponent implements OnInit {
       }
     );
   }
+  //TODO add transactions buttons delete update add
   addTransaction(transaction: Transaction) {
     this.transactionService.add(transaction).subscribe((response) => {
       this.routerService.refreshPage();
