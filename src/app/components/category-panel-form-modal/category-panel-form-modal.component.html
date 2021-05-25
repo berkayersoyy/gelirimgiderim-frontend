@@ -1,5 +1,5 @@
 <div class="modal-header justify-content-center">
-  <h4 class="title title-up">ODAYI SİL</h4>
+  <h4 class="title title-up">Kategori Ekle</h4>
   <button
     type="button"
     class="close"
@@ -10,35 +10,46 @@
 </div>
 <div class="modal-body">
   <form
-    [formGroup]="roomForm"
+    [formGroup]="categoryForm"
     style="display: flex; align-items: center; justify-content: center"
   >
     <div class="content-center">
-      Odayı silerseniz içindeki her şeyle birlikte kadar silincektir, bu geri
-        alınamaz bir işlemdir. Devam etmek istiyorsanız odanın adını girin --> <a style="font-weight: bold;">{{room.name}}</a>
       <div class="input-group form-group-no-border input-lg">
         <div class="input-group-prepend">
           <input
-          style="margin:40px;margin-left:130px;"
-            formControlName="roomName"
+            formControlName="categoryName"
             type="text"
-            name="name"
+            name="categoryName"
             class="form-control"
-            placeholder="{{ room.name }}"
+            placeholder="Kategori Adı"
           />
         </div>
       </div>
+      <input
+        class="ng-hide"
+        id="input-file-id"
+        input
+        type="file"
+        (change)="fileChange($event)"
+      />
+      <label for="input-file-id" class="md-button md-raised md-primary"></label>
     </div>
   </form>
 </div>
 <div class="modal-footer">
   <button
-    style="left:45%; bottom:10px;position: absolute;"
+    type="button"
+    class="btn btn-success"
+    [disabled]="clicked"
+    (click)="addCategory()"
+  >
+    Ekle
+  </button>
+  <button
     type="button"
     class="btn btn-danger"
-    (click)="deleteRoom()"
-    [disabled]="clicked"
+    (click)="activeModal.dismiss('Close clicked')"
   >
-    SİL
+    KAPAT
   </button>
 </div>

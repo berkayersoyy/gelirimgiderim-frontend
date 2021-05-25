@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from '../models/category';
@@ -15,13 +15,15 @@ export class CategoryService {
 
   constructor(private httpClient:HttpClient) { }
 
-  getCategories():Observable<ListResponseModel<Category>>{
-    let newPath = this.apiUrl + "getall";
-    return this.httpClient.get<ListResponseModel<Category>>(newPath);
+  getCategories(roomId:string):Observable<ListResponseModel<Category>>{
+    let newPath = this.apiUrl + "getallforroom";
+    const params = new HttpParams().set('roomId',roomId);
+    return this.httpClient.get<ListResponseModel<Category>>(newPath,{params:params});
   }
-  getCategoriesById(category:Category):Observable<SingleResponseModel<Category>>{
-    let newPath = this.apiUrl + "getbyid?id="+category;
-    return this.httpClient.get<SingleResponseModel<Category>>(newPath);
+  getCategoriesById(categoryId:string):Observable<SingleResponseModel<Category>>{
+    let newPath = this.apiUrl + "getbyid";
+    const params = new HttpParams().set('categoryId',categoryId);
+    return this.httpClient.get<SingleResponseModel<Category>>(newPath,{params:params});
   }
   add(category:Category){
     let newPath = this.apiUrl + "add";
@@ -34,6 +36,15 @@ export class CategoryService {
   delete(category:Category){
     let newPath = this.apiUrl + "delete";
     return this.httpClient.post<ResponseModel>(newPath,category);
+  }
+  getSharedCategories(){
+    let newPath = this.apiUrl + "getsharedall";
+    return this.httpClient.get<ListResponseModel<Category>>(newPath);
+  }
+  getSharedCategoryById(categoryId:string){
+    let newPath = this.apiUrl + "getsharedbyid";
+    const params = new HttpParams().set("categoryId",categoryId);
+    return this.httpClient.get<SingleResponseModel<Category>>(newPath,{params:params});
   }
   
 }

@@ -1,0 +1,91 @@
+<div class="modal-header justify-content-center">
+  <h4 class="title title-up">Kategorileri Düzenle</h4>
+  <button
+    type="button"
+    class="close"
+    (click)="activeModal.dismiss('Close click')"
+  >
+    <i class="now-ui-icons ui-1_simple-remove"></i>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-6">
+      <ul class="list-group" style="overflow-y: scroll; height: 30vh">
+        <div class="container">
+          <li
+            *ngFor="let category of categories"
+            [class]="getCurrentCategoryClass(category)"
+            (click)="setCurrentCategory(category)"
+          >
+            {{ category.categoryName }}
+          </li>
+        </div>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <form
+        *ngIf="choosed"
+        [formGroup]="categoryForm"
+        style="display: flex; align-items: center; justify-content: center;"
+      >
+        <div class="content-center" style="padding-left:150px;">
+          <div class="input-group form-group-no-border input-lg">
+            <div class="input-group-prepend">
+              <input
+                formControlName="categoryName"
+                type="text"
+                name="categoryName"
+                class="form-control"
+                placeholder="Kategori Adı"
+              />
+            </div>
+          </div>
+          <img
+          [src]="getCurrentCategoryImagePath()"
+          *ngIf="choosed"
+          style="max-width: 32px; max-height: 32px"
+        />
+          <input
+            class="ng-hide"
+            id="input-file-id"
+            input
+            type="file"
+            (change)="fileChange($event)"
+          />
+          <label
+            for="input-file-id"
+            class="md-button md-raised md-primary"
+          ></label>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-success"
+    [disabled]="clicked"
+    (click)="updateCategory()"
+  >
+    Güncelle
+  </button>
+  <button
+  *ngIf="choosed"
+  type="button"
+  class="btn btn-danger"
+  [disabled]="clicked"
+  (click)="deleteCategory()"
+>
+  SİL
+</button>
+  <button
+    style="background-color: gray;"
+    type="button"
+    class="btn btn-danger"
+    (click)="activeModal.dismiss('Close clicked')"
+  >
+    KAPAT
+  </button>
+</div>

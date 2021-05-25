@@ -1,11 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Room } from 'src/app/models/room';
-import { RoomForGet } from 'src/app/models/roomForGet';
 import { Transaction } from 'src/app/models/transaction';
-import { RoomService } from 'src/app/services/room.service';
+import { TransactionDetailDto } from 'src/app/models/transactionDetailDto';
 import { RouterService } from 'src/app/services/router.service';
 import { TransactionService } from 'src/app/services/transaction.service';
+import { AddTransactionFormModalComponent } from '../add-transaction-form-modal/add-transaction-form-modal.component';
+import { ArrangeCategoryFormModalComponent } from '../arrange-category-form-modal/arrange-category-form-modal.component';
+import { CategoryPanelFormModalComponent } from '../category-panel-form-modal/category-panel-form-modal.component';
+import { TransactionSettingsModalComponent } from '../transaction-settings-modal/transaction-settings-modal.component';
 
 @Component({
   selector: 'app-transaction',
@@ -14,14 +18,14 @@ import { TransactionService } from 'src/app/services/transaction.service';
 })
 export class TransactionComponent implements OnInit {
   dataLoaded = false;
-  transactions: Transaction[];
+  transactions: TransactionDetailDto[];
   @Input() currentRoom: Room;
 
   constructor(
     private transactionService: TransactionService,
     private toastrService: ToastrService,
     private routerService: RouterService,
-    private roomService: RoomService
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -32,7 +36,7 @@ export class TransactionComponent implements OnInit {
     if (this.currentRoom == null) {
       return;
     }
-    this.transactionService.getTransactions(this.currentRoom.id).subscribe(
+    this.transactionService.getTransactionDetailDtos(this.currentRoom.id).subscribe(
       (response) => {
         this.transactions = response.data;
         this.dataLoaded = true;
@@ -43,23 +47,38 @@ export class TransactionComponent implements OnInit {
       }
     );
   }
-  //TODO add transactions buttons delete update add
+  orderTransactionsForTime(){
+    this.transactions.reverse();
+  }
   addTransaction(transaction: Transaction) {
     this.transactionService.add(transaction).subscribe((response) => {
       this.routerService.refreshPage();
-      //TODO check if needs to be refreshed.
     });
   }
   deleteTransaction(transaction: Transaction) {
     this.transactionService.delete(transaction).subscribe((response) => {
       this.routerService.refreshPage();
-      //TODO check if needs to be refreshed.
     });
   }
   updateTransaction(transaction: Transaction) {
     this.transactionService.update(transaction).subscribe((response) => {
       this.routerService.refreshPage();
-      //TODO check if needs to be refreshed.
     });
+  }
+  
+  openTransactionSettingModal(transaction:TransactionDetailDto){
+    const modalRef = this.modalService.open(TransactionSettingsModalComponent);
+    modalRef.componentInstance.transaction = transaction;
+  }
+  openAddTransactionModal(){
+    const modalRef = this.modalService.open(AddTransactionFormModalComponent);
+  }
+  openCategoriesPanel(){
+    const modalRef = this.modalService.open(CategoryPanelFormModalComponent);
+    modalRef.componentInstance.currentRoom = this.currentRoom;
+  }
+  openArrangeCategoryPanel(){
+    const modalRef = this.modalService.open(ArrangeCategoryFormModalComponent);
+    modalRef.componentInstance.currentRoom = this.currentRoom;
   }
 }

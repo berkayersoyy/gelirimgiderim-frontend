@@ -5,6 +5,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Room } from 'src/app/models/room';
 import { RoomService } from 'src/app/services/room.service';
+import { TransactionService } from 'src/app/services/transaction.service';
 
 @Component({
   selector: 'app-confirm-delete-room',
@@ -21,7 +22,8 @@ export class ConfirmDeleteRoomComponent implements OnInit {
     private roomService: RoomService,
     private toastrService: ToastrService,
     private formBuilder:FormBuilder,
-    private router:Router
+    private router:Router,
+    private transactionService:TransactionService
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +43,15 @@ export class ConfirmDeleteRoomComponent implements OnInit {
     }
     this.clicked=true;
     this.roomService.delete(this.room).subscribe(response => {
+      this.transactionService.getTransactions(this.room.id).subscribe(response=>{
+        response.data.forEach(c=>this.transactionService.delete(c).subscribe(insideResponse=>{
+
+        },errorResponse=>{
+          this.toastrService.error(errorResponse.error.message)
+        }))
+      },errorResponse=>{
+        this.toastrService.error(errorResponse.error.message);
+      });
       this.toastrService.info("Oda silindi.")
       this.activeModal.dismiss();
       this.router.navigate(['/panel']);

@@ -5,6 +5,7 @@ import { ListResponseModel } from '../models/listResponseModel';
 import { ResponseModel } from '../models/responseModel';
 import { SingleResponseModel } from '../models/singleResponseModel';
 import { Transaction } from '../models/transaction';
+import { TransactionDetailDto } from '../models/transactionDetailDto';
 
 @Injectable({
   providedIn: 'root',
@@ -41,5 +42,34 @@ export class TransactionService {
   delete(transaction: Transaction) {
     let newPath = this.apiUrl + 'delete';
     return this.httpClient.post<ResponseModel>(newPath, transaction);
+  }
+  getTransactionsByCategory(
+    categoryId: string
+  ): Observable<ListResponseModel<Transaction>> {
+    let newPath = this.apiUrl + 'gettransactionsbycategory';
+    const params = new HttpParams().set('categoryId', categoryId);
+    return this.httpClient.get<ListResponseModel<Transaction>>(newPath, {
+      params: params,
+    });
+  }
+  getTransactionDetailDtos(
+    roomId: string
+  ): Observable<ListResponseModel<TransactionDetailDto>> {
+    let newPath = this.apiUrl + 'gettransactiondetaildtos';
+    const params = new HttpParams().set('roomId', roomId);
+    return this.httpClient.get<ListResponseModel<TransactionDetailDto>>(
+      newPath,
+      { params: params }
+    );
+  }
+  getTransactionDetailDto(
+    transactionId: string
+  ): Observable<SingleResponseModel<TransactionDetailDto>> {
+    let newPath = this.apiUrl + 'gettransactiondetaildto';
+    const params = new HttpParams().set('roomId', transactionId);
+    return this.httpClient.get<SingleResponseModel<TransactionDetailDto>>(
+      newPath,
+      { params: params }
+    );
   }
 }

@@ -10,25 +10,6 @@
           <div class="content">
             <div
               class="input-group form-group-no-border input-lg"
-              [ngClass]="{ 'input-group-focus': focus1 === true }"
-            >
-              <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <i class="now-ui-icons users_circle-08"></i>
-                </span>
-              </div>
-              <input
-                formControlName="email"
-                type="email"
-                name="email"
-                class="form-control"
-                placeholder="Email"
-                (focus)="focus1 = true"
-                (blur)="focus1 = false"
-              />
-            </div>
-            <div
-              class="input-group form-group-no-border input-lg"
               [ngClass]="{ 'input-group-focus': focus2 === true }"
             >
               <div class="input-group-prepend">
@@ -45,6 +26,21 @@
                 (blur)="focus2 = false"
               />
             </div>
+            <div
+            *ngIf="
+              registerForm.controls['firstName'].invalid &&
+              (registerForm.controls['firstName'].dirty ||
+                registerForm.controls['firstName'].touched)
+            "
+            class="text-danger"
+          >
+            <div *ngIf="registerForm.controls['firstName'].errors.required">
+              İsminizi giriniz.
+            </div>
+            <div *ngIf="registerForm.controls['firstName'].errors.minlength">
+              İsim 2 harften kısa olamaz.
+            </div>
+          </div>
             <div
               class="input-group form-group-no-border input-lg"
               [ngClass]="{ 'input-group-focus': focus3 === true }"
@@ -64,6 +60,55 @@
               />
             </div>
             <div
+            *ngIf="
+              registerForm.controls['lastName'].invalid &&
+              (registerForm.controls['lastName'].dirty ||
+                registerForm.controls['lastName'].touched)
+            "
+            class="text-danger"
+          >
+            <div *ngIf="registerForm.controls['lastName'].errors.required">
+              Soyisminizi giriniz.
+            </div>
+            <div *ngIf="registerForm.controls['lastName'].errors.minlength">
+              Soyisim 2 harften kısa olamaz.
+            </div>
+          </div>
+            <div
+              class="input-group form-group-no-border input-lg"
+              [ngClass]="{ 'input-group-focus': focus1 === true }"
+            >
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="now-ui-icons users_circle-08"></i>
+                </span>
+              </div>
+              <input
+                formControlName="email"
+                type="email"
+                name="email"
+                class="form-control"
+                placeholder="Eposta"
+                (focus)="focus1 = true"
+                (blur)="focus1 = false"
+              />
+            </div>
+            <div
+              *ngIf="
+                registerForm.controls['email'].invalid &&
+                (registerForm.controls['email'].dirty ||
+                  registerForm.controls['email'].touched)
+              "
+              class="text-danger"
+            >
+              <div *ngIf="registerForm.controls['email'].errors.required">
+                Epostanızı giriniz.
+              </div>
+              <div *ngIf="registerForm.controls['email'].errors.email">
+                Geçerli bir eposta giriniz.
+              </div>
+            </div>
+            <div
               class="input-group form-group-no-border input-lg"
               [ngClass]="{ 'input-group-focus': focus4 === true }"
             >
@@ -81,6 +126,18 @@
                 (blur)="focus4 = false"
               />
             </div>
+            <div
+              *ngIf="
+                registerForm.controls['password'].invalid &&
+                (registerForm.controls['password'].dirty ||
+                  registerForm.controls['password'].touched)
+              "
+              class="text-danger"
+            >
+              <div *ngIf="registerForm.controls['password'].errors.required">
+                 Şifrenizi giriniz.
+              </div>
+            </div>
           </div>
           <div class="footer text-center">
             <a
@@ -91,7 +148,11 @@
           </div>
           <div class="pull-left">
             <h6>
-              <a [routerLink]="['/login']" routerLinkActive="active" class="link" style="cursor: pointer"
+              <a
+                [routerLink]="['/login']"
+                routerLinkActive="active"
+                class="link"
+                style="cursor: pointer"
                 >Zaten hesabın var mı?</a
               >
             </h6>

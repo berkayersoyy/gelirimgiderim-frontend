@@ -31,12 +31,14 @@ export class AuthInterceptor implements HttpInterceptor {
     });
     return next.handle(newRequest).pipe(
       catchError((error) => {
-        if (error instanceof HttpErrorResponse && error.status === 401) {
+        if (error instanceof HttpErrorResponse && error.status == 401) {
           this.authService.logout();
           this.router.navigate(['/login']);
           this.toastrService.error("Lütfen yeniden giriş yapınız.");
+          throw new Error('Jwt expired!');
         }
-        throw new Error('Jwt expired!');
+        console.log(error);
+        throw new Error(error)
       })
     );
   }

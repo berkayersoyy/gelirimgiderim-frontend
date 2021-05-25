@@ -33,6 +33,11 @@ import { AmountPipe } from './pipes/amount.pipe';
 import { OverflowStringPipe } from './pipes/overflow-string.pipe';
 import { ConfirmDeleteRoomComponent } from './components/confirm-delete-room/confirm-delete-room.component';
 import { ChangeRoomForModalComponent } from './components/change-room-for-modal/change-room-for-modal.component';
+import { TransactionSettingsModalComponent } from './components/transaction-settings-modal/transaction-settings-modal.component';
+import { InvitationTimePipe } from './pipes/invitation-time.pipe';
+import { AddTransactionFormModalComponent } from './components/add-transaction-form-modal/add-transaction-form-modal.component';
+import { CategoryPanelFormModalComponent } from './components/category-panel-form-modal/category-panel-form-modal.component';
+import { ArrangeCategoryFormModalComponent } from './components/arrange-category-form-modal/arrange-category-form-modal.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +60,11 @@ import { ChangeRoomForModalComponent } from './components/change-room-for-modal/
     OverflowStringPipe,
     ConfirmDeleteRoomComponent,
     ChangeRoomForModalComponent,
+    TransactionSettingsModalComponent,
+    InvitationTimePipe,
+    AddTransactionFormModalComponent,
+    CategoryPanelFormModalComponent,
+    ArrangeCategoryFormModalComponent,
   ],
   imports: [
     BrowserModule,

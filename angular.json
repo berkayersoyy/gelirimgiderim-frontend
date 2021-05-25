@@ -79,7 +79,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "gelirimgiderim:build"
+            "browserTarget": "gelirimgiderim:build",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {

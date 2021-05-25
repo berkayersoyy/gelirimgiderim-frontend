@@ -1,18 +1,39 @@
 <div
   class="container justify-content-center"
-  style="width: 70vh; height: 85vh; overflow: scroll; overflow-x:hidden ;"
+  style="width: 70vh; height: 85vh; overflow: scroll; overflow-x: hidden"
 >
+  <button
+    class="btn btn-primary"
+    style="float: right"
+    (click)="openAddTransactionModal()"
+  >
+    Ekle
+  </button>
+  <button
+    class="btn btn-primary"
+    style="float: right"
+    (click)="openCategoriesPanel()"
+  >
+    Kategori Ekle
+  </button>
+  <button
+    class="btn btn-primary"
+    style="float: right"
+    (click)="openArrangeCategoryPanel()"
+  >
+    Kategorileri Düzenle
+  </button>
   <div class="accordion" id="accordionExample" *ngIf="dataLoaded">
     <div class="card" *ngFor="let transaction of transactions">
-      <div class="card-header" [id]="'heading' + transaction.id">
+      <div class="card-header" [id]="'heading' + transaction.transactionId">
         <h2 class="mb-0" style="font-size: 20px">
           <button
             class="btn btn-link text-left"
             type="button"
             data-toggle="collapse"
-            [attr.data-target]="'#collapse' + transaction.id"
+            [attr.data-target]="'#collapse' + transaction.transactionId"
             aria-expanded="false"
-            [attr.aria-controls]="'collapse' + transaction.id"
+            [attr.aria-controls]="'collapse' + transaction.transactionId"
           >
             {{ transaction.title }}
           </button>
@@ -20,14 +41,14 @@
             {{ transaction.amount }} TL
           </p>
           <a
-          style="
-            position: absolute;
-            bottom: 25px;
-            right: 12px;
-            font-size: 12px;
-          "
-          >Berkay Ersoy</a
-        >
+            style="
+              position: absolute;
+              bottom: 25px;
+              right: 12px;
+              font-size: 12px;
+            "
+            >Berkay Ersoy</a
+          >
           <a
             style="
               position: absolute;
@@ -41,13 +62,25 @@
       </div>
       <div
         *ngIf="transaction.description != null"
-        [id]="'collapse' + transaction.id"
+        [id]="'collapse' + transaction.transactionId"
         class="collapse"
-        [attr.aria-labelledby]="'heading' + transaction.id"
+        [attr.aria-labelledby]="'heading' + transaction.transactionId"
         data-parent="#accordionExample"
       >
         <div class="card-body">
           {{ transaction.description }}
+          <button
+            class="now-ui-icons ui-1_settings-gear-63"
+            style="
+              background-color: transparent;
+              border: none;
+              position: absolute;
+              left: 10px;
+              bottom: 10px;
+              font-size: 150%;
+            "
+            (click)="openTransactionSettingModal(transaction)"
+          ></button>
         </div>
       </div>
     </div>

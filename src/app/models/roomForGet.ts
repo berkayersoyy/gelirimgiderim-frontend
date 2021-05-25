@@ -1,3 +1,3 @@
 export interface RoomForGet{
-    id:string;
+    path:string;
 }

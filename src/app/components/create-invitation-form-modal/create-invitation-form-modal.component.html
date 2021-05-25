@@ -15,7 +15,7 @@
     *ngIf="dataLoaded"
   >
     {{ invitation.invitationCode }}<br/>
-    {{invitation.expiration | relativeTime}}
+    {{invitation.expiration | invitationTime}}
   </div>
 </div>
 <div class="modal-footer">

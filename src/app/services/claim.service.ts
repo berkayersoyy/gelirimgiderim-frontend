@@ -51,5 +51,13 @@ export class ClaimService {
     let newPath = this.apiUrl+"deleteclaimfromuser";
     return this.httpClient.post<ResponseModel>(newPath,userClaim);
   }
-
+  getSharedCategories(){
+    let newPath = this.apiUrl + "getsharedall";
+    return this.httpClient.get<ListResponseModel<Claim>>(newPath);
+  }
+  getSharedCategoryById(claimId:string){
+    let newPath = this.apiUrl + "getshared";
+    const params = new HttpParams().set("claimId",claimId);
+    return this.httpClient.get<SingleResponseModel<Claim>>(newPath,{params:params});
+  }
 }

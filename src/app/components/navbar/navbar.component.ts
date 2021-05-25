@@ -1,8 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import {
   Location,
-  LocationStrategy,
-  PathLocationStrategy,
 } from '@angular/common';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
@@ -69,14 +67,11 @@ export class NavbarComponent implements OnInit {
   }
   sidebarClose() {
     const html = document.getElementsByTagName('html')[0];
-    // console.log(html);
     this.toggleButton.classList.remove('toggled');
     this.sidebarVisible = false;
     html.classList.remove('nav-open');
   }
   sidebarToggle() {
-    // const toggleButton = this.toggleButton;
-    // const body = document.getElementsByTagName('body')[0];
     if (this.sidebarVisible === false) {
       this.sidebarOpen();
     } else {
@@ -84,12 +79,4 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  isDocumentation() {
-    var titlee = this.location.prepareExternalUrl(this.location.path());
-    if (titlee === '/documentation') {
-      return true;
-    } else {
-      return false;
-    }
-  }
 }

@@ -23,10 +23,25 @@
                 type="email"
                 name="email"
                 class="form-control"
-                placeholder="Email"
+                placeholder="Eposta"
                 (focus)="focus = true"
                 (blur)="focus = false"
               />
+            </div>
+            <div
+              *ngIf="
+                loginForm.controls['email'].invalid &&
+                (loginForm.controls['email'].dirty ||
+                  loginForm.controls['email'].touched)
+              "
+              class="text-danger"
+            >
+              <div *ngIf="loginForm.controls['email'].errors.required">
+                Epostanızı giriniz.
+              </div>
+              <div *ngIf="loginForm.controls['email'].errors.email">
+                Geçerli bir eposta giriniz.
+              </div>
             </div>
             <div
               class="input-group form-group-no-border input-lg"
@@ -46,13 +61,27 @@
                 (blur)="focus1 = false"
               />
             </div>
+            <div
+              *ngIf="
+                loginForm.controls['password'].invalid &&
+                (loginForm.controls['password'].dirty ||
+                  loginForm.controls['password'].touched)
+              "
+              class="text-danger"
+            >
+              <div *ngIf="loginForm.controls['password'].errors.required">
+                Şifrenizi giriniz.
+              </div>
+            </div>
           </div>
           <div class="footer text-center">
-            <a
+            <button
+              [disabled]="loginForm.pristine || loginForm.invalid"
               class="btn btn-primary btn-round btn-lg btn-block"
               (click)="login()"
-              >Giriş Yap</a
             >
+              Giriş Yap
+            </button>
           </div>
           <div class="pull-left">
             <h6>

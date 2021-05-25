@@ -5,7 +5,6 @@ import { Invitation } from '../models/invitation';
 import { ListResponseModel } from '../models/listResponseModel';
 import { ResponseModel } from '../models/responseModel';
 import { Room } from '../models/room';
-import { RoomForGet } from '../models/roomForGet';
 import { SingleResponseModel } from '../models/singleResponseModel';
 import { User } from '../models/user';
 
@@ -65,5 +64,13 @@ export class RoomService {
   leaveRoom(room: Room) {
     let newPath = this.apiUrl + 'leaveroom';
     return this.httpClient.post<ResponseModel>(newPath, room);
+  }
+  setCurrentRoom(room:Room){
+    let newPath = this.apiUrl+"setcurrentroom";
+    return this.httpClient.post<ResponseModel>(newPath,room);
+  }
+  getCurrentRoom(){
+    let newPath = this.apiUrl +"getcurrentroom";
+    return this.httpClient.get<SingleResponseModel<Room>>(newPath);
   }
 }

@@ -1,9 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 import { Room } from 'src/app/models/room';
 import { RoomService } from 'src/app/services/room.service';
+import { TransactionService } from 'src/app/services/transaction.service';
 import { CreateInvitationFormModalComponent } from '../create-invitation-form-modal/create-invitation-form-modal.component';
 import { CreateRoomFormModalComponent } from '../create-room-form-modal/create-room-form-modal.component';
 import { JoinRoomFormModalComponent } from '../join-room-form-modal/join-room-form-modal.component';
@@ -21,13 +23,13 @@ export class RoomComponent implements OnInit {
   constructor(
     private roomService: RoomService,
     private modalService: NgbModal,
-    private router: Router
+    private router: Router,
+    private toastrService:ToastrService
   ) {}
 
   ngOnInit(): void {
     this.getRooms();
   }
-  //TODO settings need to be dropdown menu and arranged
   getRooms() {
     this.roomService.getRooms().subscribe(
       (response) => {
@@ -35,7 +37,7 @@ export class RoomComponent implements OnInit {
         this.dataLoaded = true;
       },
       (responseError) => {
-        console.log(responseError.error.message);
+        console.log(responseError);
       }
     );
   }
@@ -60,8 +62,17 @@ export class RoomComponent implements OnInit {
   }
   setCurrentRoom(room: Room) {
     this.currentRoom = room;
+    this.roomService.setCurrentRoom(room).subscribe(
+      (response) => {},
+      (errorResponse) => {
+        this.toastrService.error(errorResponse.error.message);
+      }
+    );
   }
   routeToRoomSettings() {
-    this.router.navigate(['/panel/roomsettings',{currentRoomId:this.currentRoom.id}]);
+    this.router.navigate([
+      '/panel/roomsettings',
+      { currentRoomId: this.currentRoom.id },
+    ]);
   }
 }
