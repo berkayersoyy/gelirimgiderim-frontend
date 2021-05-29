@@ -97,23 +97,21 @@ export class ArrangeCategoryFormModalComponent implements OnInit {
                       this.toastrService.success(response.message);
                       this.activeModal.dismiss();
                     },
-                    (errorResponse) => {
-                      console.log(errorResponse);
+                    (responseError) => {
                       this.clicked = false;
-                      this.toastrService.error(errorResponse.error.message);
+                      this.toastrService.error(responseError);
                     }
                   );
               },
-              (errorResponse) => {
-                console.log(errorResponse);
+              (responseError) => {
                 this.clicked = false;
-                this.toastrService.error(errorResponse.error.message);
+                this.toastrService.error(responseError);
               }
             );
           },
           (responseError) => {
             this.clicked = false;
-            console.log(responseError);
+            this.toastrService.error(responseError);
           }
         );
       }
@@ -130,13 +128,13 @@ export class ArrangeCategoryFormModalComponent implements OnInit {
           },
           (responseError) => {
             this.clicked=false;
-            this.toastrService.error(responseError.error.message);
+            this.toastrService.error(responseError);
           }
         );
       },
       (responseError) => {
         this.clicked=false;
-        this.toastrService.error(responseError.error.message);
+        this.toastrService.error(responseError);
       }
     );
   }

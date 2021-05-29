@@ -45,7 +45,7 @@ export class RoomSettingsComponent implements OnInit {
         this.dataLoaded = true;
       },
       (responseError) => {
-        this.toastrService.error(responseError.error.message);
+        this.toastrService.error(responseError);
       }
     );
   }
@@ -56,7 +56,7 @@ export class RoomSettingsComponent implements OnInit {
         this.currentRoom = response.data;
       },
       (responseError) => {
-        this.toastrService.error(responseError.error.message);
+        this.toastrService.error(responseError);
       }
     );
   }

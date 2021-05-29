@@ -47,16 +47,16 @@ export class ConfirmDeleteRoomComponent implements OnInit {
         response.data.forEach(c=>this.transactionService.delete(c).subscribe(insideResponse=>{
 
         },errorResponse=>{
-          this.toastrService.error(errorResponse.error.message)
+          this.toastrService.error(errorResponse);
         }))
       },errorResponse=>{
-        this.toastrService.error(errorResponse.error.message);
+        this.toastrService.error(errorResponse);
       });
       this.toastrService.info("Oda silindi.")
       this.activeModal.dismiss();
       this.router.navigate(['/panel']);
     },responseError=>{
-      this.toastrService.error(responseError.error.message);
+      this.toastrService.error(responseError);
       this.clicked=false;
     });
   }

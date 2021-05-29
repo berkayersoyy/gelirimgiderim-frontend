@@ -36,18 +36,19 @@ export class TransactionComponent implements OnInit {
     if (this.currentRoom == null) {
       return;
     }
-    this.transactionService.getTransactionDetailDtos(this.currentRoom.id).subscribe(
-      (response) => {
-        this.transactions = response.data;
-        this.dataLoaded = true;
-      },
-      (responseError) => {
-        console.log(responseError);
-        this.toastrService.error(responseError.error.message);
-      }
-    );
+    this.transactionService
+      .getTransactionDetailDtos(this.currentRoom.id)
+      .subscribe(
+        (response) => {
+          this.transactions = response.data;
+          this.dataLoaded = true;
+        },
+        (responseError) => {
+          this.toastrService.error(responseError);
+        }
+      );
   }
-  orderTransactionsForTime(){
+  orderTransactionsForTime() {
     this.transactions.reverse();
   }
   addTransaction(transaction: Transaction) {
@@ -65,19 +66,21 @@ export class TransactionComponent implements OnInit {
       this.routerService.refreshPage();
     });
   }
-  
-  openTransactionSettingModal(transaction:TransactionDetailDto){
+
+  openTransactionSettingModal(transaction: TransactionDetailDto) {
     const modalRef = this.modalService.open(TransactionSettingsModalComponent);
     modalRef.componentInstance.transaction = transaction;
+    modalRef.componentInstance.currentRoom = this.currentRoom;
   }
-  openAddTransactionModal(){
+  openAddTransactionModal() {
     const modalRef = this.modalService.open(AddTransactionFormModalComponent);
+    modalRef.componentInstance.currentRoom = this.currentRoom;
   }
-  openCategoriesPanel(){
+  openCategoriesPanel() {
     const modalRef = this.modalService.open(CategoryPanelFormModalComponent);
     modalRef.componentInstance.currentRoom = this.currentRoom;
   }
-  openArrangeCategoryPanel(){
+  openArrangeCategoryPanel() {
     const modalRef = this.modalService.open(ArrangeCategoryFormModalComponent);
     modalRef.componentInstance.currentRoom = this.currentRoom;
   }

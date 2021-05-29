@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['/panel']);
           },
           responseError=>{
-              this.toastrService.error(responseError.error);
+            this.toastrService.error(responseError)
           });
       }
   }

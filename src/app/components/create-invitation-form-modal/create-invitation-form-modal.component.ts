@@ -32,7 +32,7 @@ export class CreateInvitationFormModalComponent implements OnInit {
         this.toastrService.success(response.message)
         this.dataLoaded=true;
     },responseError=>{
-      this.toastrService.error(responseError.error.message)
+      this.toastrService.error(responseError)
     });
   }
   deleteInvitation(){
@@ -40,15 +40,13 @@ export class CreateInvitationFormModalComponent implements OnInit {
       this.toastrService.info(response.message)
       this.activeModal.dismiss();
     },responseError=>{
-      this.toastrService.error(responseError.error.message)
+      this.toastrService.error(responseError);
     });
   }
   getInvitation(){
     this.roomService.getInvitation(this.room.id).subscribe(response=>{
       this.invitation=response.data
       this.dataLoaded=true;
-    },responseError=>{
-      this.toastrService.error(responseError.error.message)
     });
   }
 }

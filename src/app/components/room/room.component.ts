@@ -64,8 +64,8 @@ export class RoomComponent implements OnInit {
     this.currentRoom = room;
     this.roomService.setCurrentRoom(room).subscribe(
       (response) => {},
-      (errorResponse) => {
-        this.toastrService.error(errorResponse.error.message);
+      (responseError) => {
+        this.toastrService.error(responseError);
       }
     );
   }

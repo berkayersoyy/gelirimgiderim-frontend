@@ -44,8 +44,8 @@ export class CreateRoomFormModalComponent implements OnInit {
           this.activeModal.dismiss();
           this.routerService.refreshPage();
         },
-        (errorResponse) => {
-          this.toastrService.error(errorResponse.error.message);
+        (responseError) => {
+          this.toastrService.error(responseError);
         }
       );
     } else {

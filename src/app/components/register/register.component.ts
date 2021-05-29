@@ -55,8 +55,7 @@ export class RegisterComponent implements OnInit {
         localStorage.setItem("token",response.data.token);
         this.router.navigate(['/panel']);
       },responseError=>{
-        console.log(responseError);
-        this.toastrService.error(responseError.error);
+        this.toastrService.error(responseError)
       });
     }
   }

@@ -1,4 +1,4 @@
-<div style="display: block; padding-top: 100px;">
+<div style="display: block; padding-top: 100px;" *ngIf="dataLoaded">
     <canvas baseChart 
       [data]="pieChartData" 
       [labels]="pieChartLabels" 
@@ -6,6 +6,7 @@
       [options]="pieChartOptions"
       [plugins]="pieChartPlugins"
       [legend]="pieChartLegend">
+      [up]
     </canvas>
   </div>
   

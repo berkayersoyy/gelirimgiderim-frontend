@@ -37,8 +37,11 @@ export class AuthInterceptor implements HttpInterceptor {
           this.toastrService.error("Lütfen yeniden giriş yapınız.");
           throw new Error('Jwt expired!');
         }
-        console.log(error);
-        throw new Error(error)
+        if(error.error.message){
+          return throwError(error.error.message)
+        }else{
+          return throwError(error.error)
+        }
       })
     );
   }

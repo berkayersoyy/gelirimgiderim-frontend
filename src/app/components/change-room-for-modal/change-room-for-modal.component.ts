@@ -42,7 +42,7 @@ export class ChangeRoomForModalComponent implements OnInit {
         this.room=room;
       },responseError=>{
         this.clicked=false;
-        this.toastrService.error(responseError.error.message)
+        this.toastrService.error(responseError);
       });
     }
   }

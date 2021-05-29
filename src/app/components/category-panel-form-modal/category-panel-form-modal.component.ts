@@ -56,19 +56,17 @@ export class CategoryPanelFormModalComponent implements OnInit {
             this.categoryService.add(category).subscribe(
               (response) => {
                 this.toastrService.success(response.message);
-                console.log(response);
                 this.activeModal.dismiss();
               },
-              (errorResponse) => {
-                console.log(errorResponse);
+              (responseError) => {
                 this.clicked = false;
-                this.toastrService.error(errorResponse.error.message);
+                this.toastrService.error(responseError);
               }
             );
           },
           (responseError) => {
             this.clicked=false;
-            console.log(responseError);
+            this.toastrService.error(responseError);
           }
         );
       }
