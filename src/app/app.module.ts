@@ -28,7 +28,6 @@ import { JoinRoomFormModalComponent } from './components/join-room-form-modal/jo
 import { TransactionChartComponent } from './components/transaction-chart/transaction-chart.component';
 import { ChartsModule } from 'ng2-charts';
 import { CreateInvitationFormModalComponent } from './components/create-invitation-form-modal/create-invitation-form-modal.component';
-import { RoomSettingsComponent } from './components/room-settings/room-settings.component';
 import { AmountPipe } from './pipes/amount.pipe';
 import { OverflowStringPipe } from './pipes/overflow-string.pipe';
 import { ConfirmDeleteRoomComponent } from './components/confirm-delete-room/confirm-delete-room.component';
@@ -38,6 +37,12 @@ import { InvitationTimePipe } from './pipes/invitation-time.pipe';
 import { AddTransactionFormModalComponent } from './components/add-transaction-form-modal/add-transaction-form-modal.component';
 import { CategoryPanelFormModalComponent } from './components/category-panel-form-modal/category-panel-form-modal.component';
 import { ArrangeCategoryFormModalComponent } from './components/arrange-category-form-modal/arrange-category-form-modal.component';
+import { ArrangeUsersFormModalComponent } from './components/arrange-users-form-modal/arrange-users-form-modal.component';
+import { AddClaimFormModalComponent } from './components/add-claim-form-modal/add-claim-form-modal.component';
+import { ArrangeClaimsFormModalComponent } from './components/arrange-claims-form-modal/arrange-claims-form-modal.component';
+import { UpdateClaimFormModalComponent } from './components/update-claim-form-modal/update-claim-form-modal.component';
+import { ArrangeClaimsForUserFormModalComponent } from './components/arrange-claims-for-user-form-modal/arrange-claims-for-user-form-modal.component';
+import { SkipCurrentUserPipe } from './pipes/skip-current-user.pipe';
 
 @NgModule({
   declarations: [
@@ -55,7 +60,6 @@ import { ArrangeCategoryFormModalComponent } from './components/arrange-category
     JoinRoomFormModalComponent,
     TransactionChartComponent,
     CreateInvitationFormModalComponent,
-    RoomSettingsComponent,
     AmountPipe,
     OverflowStringPipe,
     ConfirmDeleteRoomComponent,
@@ -65,6 +69,12 @@ import { ArrangeCategoryFormModalComponent } from './components/arrange-category
     AddTransactionFormModalComponent,
     CategoryPanelFormModalComponent,
     ArrangeCategoryFormModalComponent,
+    ArrangeUsersFormModalComponent,
+    AddClaimFormModalComponent,
+    ArrangeClaimsFormModalComponent,
+    UpdateClaimFormModalComponent,
+    ArrangeClaimsForUserFormModalComponent,
+    SkipCurrentUserPipe,
   ],
   imports: [
     BrowserModule,

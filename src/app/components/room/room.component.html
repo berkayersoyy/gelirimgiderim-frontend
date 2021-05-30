@@ -35,15 +35,42 @@
   <div class="col-sm-9">
     <div *ngIf="currentRoom" class="container">
       <div style="height: 50px; background-color: #f96332; text-align: center">
-        <button
-          style="background-color: transparent; border: none; float: right"
-          (click)="routeToRoomSettings()"
+        <div
+          class="nav-link dropdown button-dropdown dropdown-toggle"
+          ngbDropdown
+          ngbDropdownToggle
+          style="color: white; float: right"
         >
           <i
             class="now-ui-icons ui-1_settings-gear-63"
-            style="font-size: 24px; padding: 12px"
+            style="
+              color: black;
+              float: right;
+              font-size: 170%;
+              padding-top: 20%;
+            "
           ></i>
-        </button>
+          <div ngbDropdownMenu>
+            <a class="dropdown-header">AYARLAR</a>
+            <a class="dropdown-item" (click)="openArrangeUsersFormModal()"
+              >Kullanıcıları Düzenle</a
+            >
+            <button
+              class="dropdown-item"
+              (click)="openArrangeClaimsFormModal()"
+            >
+              Yetkileri Düzenle
+            </button>
+            <a class="dropdown-item" (click)="openChangeRoomFormModal()"
+              >Odayı Düzenle</a
+            >
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="leaveRoom()"> Odadan Ayrıl </a>
+            <a class="dropdown-item" (click)="openDeleteRoomFormModal()"
+              >Odayı Sil</a
+            >
+          </div>
+        </div>
         <p style="color: white; padding-top: 4px; font-size: 25px">
           {{ currentRoom.name }}
         </p>
@@ -56,7 +83,9 @@
         >
           Davet Oluştur
         </button>
-        <app-transaction-chart [currentRoom]="currentRoom"></app-transaction-chart>
+        <app-transaction-chart
+          [currentRoom]="currentRoom"
+        ></app-transaction-chart>
       </div>
       <app-transaction [currentRoom]="currentRoom"></app-transaction>
     </div>

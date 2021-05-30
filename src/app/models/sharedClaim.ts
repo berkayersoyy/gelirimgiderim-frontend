@@ -1,6 +1,5 @@
-export interface Claim{
+export interface SharedClaim{
     id:string;
-    roomId:string;
     name:string;
     claimProperties:string[];
 }

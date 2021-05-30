@@ -12,7 +12,7 @@ export class UserService {
 
   constructor(private httpClient:HttpClient) { }
 
-  apiUrl = "https://localhost:44386/api/users/";
+  apiUrl = "https://gelirimgiderim.azurewebsites.net/api/users/";
 
   getCurrentUser(): Observable<SingleResponseModel<User>>{
       let newPath = this.apiUrl + "currentuser";

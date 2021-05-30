@@ -1,0 +1,41 @@
+<div class="modal-header justify-content-center">
+  <h4 class="title title-up">YETKİLERİ DÜZENLE</h4>
+  <button
+    type="button"
+    class="close"
+    (click)="activeModal.dismiss('Close click')"
+  >
+    <i class="now-ui-icons ui-1_simple-remove"></i>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="container justify-content-center">
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="list group" style="overflow-y: scroll; height: 40vh">
+          <li
+            *ngFor="let claim of claims"
+            [ngClass]="getCurrentClaimClass(claim)"
+            (click)="setCurrentClaim(claim)"
+          >
+            {{ claim.name }}
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-primary" (click)="openAddClaimFormModal()">
+          Ekle
+        </button>
+        <button class="btn btn-primary" (click)="openUpdateClaimFormModal()">
+          Güncelle</button
+        ><button
+          class="btn btn-primary"
+          (click)="deleteClaim()"
+          [disabled]="clicked"
+        >
+          Sil
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,6 +8,7 @@ import {
 } from 'ng2-charts';
 import { Category } from 'src/app/models/category';
 import { Room } from 'src/app/models/room';
+import { SharedCategory } from 'src/app/models/sharedCategory';
 import { Transaction } from 'src/app/models/transaction';
 import { CategoryService } from 'src/app/services/category.service';
 import { TransactionService } from 'src/app/services/transaction.service';
@@ -27,7 +28,7 @@ export class TransactionChartComponent implements OnInit {
   public pieChartPlugins: any = [];
   dataLoaded=false;
   categories: Category[] = [];
-  sharedCategories: Category[] = [];
+  sharedCategories: SharedCategory[] = [];
   transactions: Transaction[] = [];
   @Input() currentRoom: Room;
 

@@ -31,11 +31,15 @@ export class AuthInterceptor implements HttpInterceptor {
     });
     return next.handle(newRequest).pipe(
       catchError((error) => {
+        console.log(error)
         if (error instanceof HttpErrorResponse && error.status == 401) {
           this.authService.logout();
           this.router.navigate(['/login']);
           this.toastrService.error("Lütfen yeniden giriş yapınız.");
           throw new Error('Jwt expired!');
+        }
+        if(error.status == 403){
+          return throwError("Yetkiniz yok!");
         }
         if(error.error.message){
           return throwError(error.error.message)

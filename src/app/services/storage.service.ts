@@ -10,7 +10,7 @@ import { StorageModel } from '../models/storageModel';
 })
 export class StorageService {
   constructor(private httpClient: HttpClient) {}
-  apiUrl = 'https://localhost:44386/api/storage/';
+  apiUrl = 'https://gelirimgiderim.azurewebsites.net/api/storage/';
 
   upload(path: StorageModel) {
     let newPath = this.apiUrl + 'upload';

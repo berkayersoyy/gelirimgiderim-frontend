@@ -1,0 +1,96 @@
+<div class="modal-header justify-content-center">
+    <h4 class="title title-up">Yetki Güncelle</h4>
+    <button
+      type="button"
+      class="close"
+      (click)="activeModal.dismiss('Close click')"
+    >
+      <i class="now-ui-icons ui-1_simple-remove"></i>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form
+      [formGroup]="claimForm"
+      style="display: flex; align-items: center; justify-content: center"
+    >
+      <div class="content-center">
+        <div class="input-group form-group-no-border input-lg">
+          <div class="input-group-prepend">
+            <input
+              formControlName="name"
+              type="text"
+              name="name"
+              class="form-control"
+              placeholder="Yetki Adı"
+            />
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          [checked]="roomClaim"
+          (change)="checkRoomClaim($event)"
+        />
+        <span class="form-check-sign"></span>
+        Oda ayarları yetkisi
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          [checked]="transactionClaim"
+          (change)="checkTransactionClaim($event)"
+        />
+        <span class="form-check-sign"></span>
+        Gelir gider ayarları yetkisi
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          [checked]="categoryClaim"
+          (change)="checkCategoryClaim($event)"
+        />
+        <span class="form-check-sign"></span>
+        Kategori ayarları yetkisi
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          [checked]="claimClaim"
+          (change)="checkClaimClaim($event)"
+        />
+        <span class="form-check-sign"></span>
+        Yetki ayarları yetkisi
+      </label>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-success"
+      [disabled]="clicked"
+      (click)="updateClaim()"
+    >
+      Güncelle
+    </button>
+    <button
+      type="button"
+      class="btn btn-danger"
+      (click)="activeModal.dismiss('Close clicked')"
+    >
+      KAPAT
+    </button>
+  </div>
+  

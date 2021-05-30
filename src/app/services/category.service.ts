@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Category } from '../models/category';
 import { ListResponseModel } from '../models/listResponseModel';
 import { ResponseModel } from '../models/responseModel';
+import { SharedCategory } from '../models/sharedCategory';
 import { SingleResponseModel } from '../models/singleResponseModel';
 
 @Injectable({
@@ -11,7 +12,7 @@ import { SingleResponseModel } from '../models/singleResponseModel';
 })
 export class CategoryService {
 
-  apiUrl="https://localhost:44386/api/categories/";
+  apiUrl="https://gelirimgiderim.azurewebsites.net/api/categories/";
 
   constructor(private httpClient:HttpClient) { }
 
@@ -39,12 +40,12 @@ export class CategoryService {
   }
   getSharedCategories(){
     let newPath = this.apiUrl + "getsharedall";
-    return this.httpClient.get<ListResponseModel<Category>>(newPath);
+    return this.httpClient.get<ListResponseModel<SharedCategory>>(newPath);
   }
   getSharedCategoryById(categoryId:string){
     let newPath = this.apiUrl + "getsharedbyid";
     const params = new HttpParams().set("categoryId",categoryId);
-    return this.httpClient.get<SingleResponseModel<Category>>(newPath,{params:params});
+    return this.httpClient.get<SingleResponseModel<SharedCategory>>(newPath,{params:params});
   }
   
 }

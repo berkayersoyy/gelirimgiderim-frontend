@@ -1,0 +1,68 @@
+<div class="modal-header justify-content-center">
+  <h4 class="title title-up">Yetkileri Düzenle</h4>
+  <button
+    type="button"
+    class="close"
+    (click)="activeModal.dismiss('Close click')"
+  >
+    <i class="now-ui-icons ui-1_simple-remove"></i>
+  </button>
+</div>
+<div class="modal-body">
+  <form
+    [formGroup]="claimForm"
+    style="display: flex; align-items: center; justify-content: center"
+  >
+    <div class="form-group">
+      <h4 *ngIf="dataLoaded">Şuanki yetki: {{ currentClaim.name }}</h4>
+      <br />
+      <label for="exampleFormControlSelect1"></label>
+      <select
+        class="form-control"
+        name="claimId"
+        id="exampleFormControlSelect1"
+        formControlName="claimId"
+      >
+        <option *ngFor="let claim of claims" [value]="claim.id">
+          {{ claim.name }}
+        </option>
+      </select>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-success"
+    [disabled]="clicked"
+    *ngIf="currentClaim!=null"
+    (click)="updateClaim()"
+  >
+    Güncelle
+  </button>
+  <button
+    type="button"
+    class="btn btn-success"
+    [disabled]="clicked"
+    *ngIf="currentClaim!=null"
+    (click)="deleteClaim()"
+  >
+    Sil
+  </button>
+  <button
+    type="button"
+    class="btn btn-success"
+    [disabled]="clicked"
+    *ngIf="!currentClaim"
+    (click)="addClaim()"
+  >
+    Ekle
+  </button>
+  <button
+    type="button"
+    class="btn btn-danger"
+    (click)="activeModal.dismiss('Close clicked')"
+  >
+    KAPAT
+  </button>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Validators,FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -14,7 +14,7 @@ import { TransactionService } from 'src/app/services/transaction.service';
 })
 export class ConfirmDeleteRoomComponent implements OnInit {
   clicked = false;
-  room: Room;
+  @Input() room: Room;
   roomForm:FormGroup;
 
   constructor(

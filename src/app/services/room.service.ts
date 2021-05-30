@@ -12,7 +12,7 @@ import { User } from '../models/user';
   providedIn: 'root',
 })
 export class RoomService {
-  apiUrl = 'https://localhost:44386/api/rooms/';
+  apiUrl = 'https://gelirimgiderim.azurewebsites.net/api/rooms/';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -72,5 +72,9 @@ export class RoomService {
   getCurrentRoom(){
     let newPath = this.apiUrl +"getcurrentroom";
     return this.httpClient.get<SingleResponseModel<Room>>(newPath);
+  }
+  leaveUserFromRoom(user:User){
+    let newPath = this.apiUrl+'leaveuserfromroom';
+    return this.httpClient.post<ResponseModel>(newPath,user);
   }
 }

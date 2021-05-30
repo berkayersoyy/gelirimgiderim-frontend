@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
@@ -13,7 +13,7 @@ import { RoomService } from 'src/app/services/room.service';
 export class ChangeRoomForModalComponent implements OnInit {
   clicked = false;
   roomForm: FormGroup;
-  room:Room;
+  @Input() room:Room;
 
   constructor(
     public activeModal: NgbActiveModal,

@@ -4,16 +4,15 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { PanelComponent } from './components/panel/panel.component';
 import { RegisterComponent } from './components/register/register.component';
-import { RoomSettingsComponent } from './components/room-settings/room-settings.component';
+import { LoggedOnGuard } from './guards/logged-on.guard';
 import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
   {path:"",pathMatch:"full",component:HomeComponent},
   {path:"home",component:HomeComponent},
-  {path:"login",component:LoginComponent},
-  {path:"register",component:RegisterComponent},
+  {path:"login",component:LoginComponent,canActivate:[LoggedOnGuard]},
+  {path:"register",component:RegisterComponent,canActivate:[LoggedOnGuard]},
   {path:"panel",component:PanelComponent,canActivate:[LoginGuard]},
-  {path:"panel/roomsettings",component:RoomSettingsComponent,canActivate:[LoginGuard]}
 ];
 
 @NgModule({

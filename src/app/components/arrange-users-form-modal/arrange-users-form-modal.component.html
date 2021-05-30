@@ -1,0 +1,33 @@
+<div class="modal-header justify-content-center">
+  <h4 class="title title-up">KULLANICILARI DÜZENLE</h4>
+  <button
+    type="button"
+    class="close"
+    (click)="activeModal.dismiss('Close click')"
+  >
+    <i class="now-ui-icons ui-1_simple-remove"></i>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="container justify-content-center">
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="list group" style="overflow-y: scroll; height: 40vh;">
+          <li
+            *ngFor="let user of users | skipCurrentUser:currentUser.id"
+            [ngClass]="getCurrentUserClass(user)"
+            (click)="setCurrentUser(user)"
+          >{{user.firstName + " " +user.lastName}}</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+          <button class="btn btn-primary" (click)="leaveRoom()">
+              Odadan Çıkar
+          </button>
+          <button class="btn btn-primary" (click)="openArrangeUserClaimFormModal()">
+            Yetkilerini Düzenle
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,7 +11,7 @@ import { TransactionDetailDto } from '../models/transactionDetailDto';
   providedIn: 'root',
 })
 export class TransactionService {
-  apiUrl = 'https://localhost:44386/api/transactions/';
+  apiUrl = 'https://gelirimgiderim.azurewebsites.net/api/transactions/';
 
   constructor(private httpClient: HttpClient) {}
 
